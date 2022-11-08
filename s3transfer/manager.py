@@ -288,6 +288,10 @@ class TransferManager:
     def config(self):
         return self._config
 
+    @property
+    def coordinator_controller(self):
+        return self._coordinator_controller
+
     def upload(self, fileobj, bucket, key, extra_args=None, subscribers=None):
         """Uploads a file to S3
 
@@ -618,7 +622,7 @@ class TransferManager:
         :param cancel_msg: The message to specify if canceling all in-progress
             transfers.
         """
-        self._shutdown(cancel, cancel, cancel_msg)
+        self._shutdown(cancel, cancel_msg)
 
     def _shutdown(self, cancel, cancel_msg, exc_type=CancelledError):
         if cancel:
